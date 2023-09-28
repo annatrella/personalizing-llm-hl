@@ -100,6 +100,7 @@ def get_response_list():
 # prompt = create_prompt(0)
 # print(prompt)
 
+### Prompting GPT for evaluation ###
 bulk_responses = get_response_list()
 with open(os.path.join(OUTPUT_PATH, f"gpt4_evals.p"), 'wb') as file:
     pickle.dump(bulk_responses, file)
@@ -108,7 +109,6 @@ with open(os.path.join(OUTPUT_PATH, f"gpt4_evals.p"), 'wb') as file:
 with open(os.path.join(OUTPUT_PATH, f"gpt4_bad_evals.p"), 'wb') as file:
     pickle.dump(BAD_JSONS, file)
 
-# Convert JSON strings to Python dictionaries
 json_data = []
 for json_str in bulk_responses:
     try:
