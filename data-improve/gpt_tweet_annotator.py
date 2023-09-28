@@ -54,7 +54,7 @@ def add_info_to_json(json_str, index, personal_interest, input, context):
 # need to set export OPENAI_API_KEY={YOUR KEY HERE} before running
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-def prompt_gpt_3(gpt_prompt):
+def prompt_gpt(gpt_prompt):
   message=[{"role": "user", "content": gpt_prompt}]
   response = openai.ChatCompletion.create(
     #   model="gpt-3.5-turbo",
@@ -84,7 +84,7 @@ def get_response_list(df, user_idxs):
     tweets = [input] + context
     gpt_prompt = create_prompt(personal_interest, tweets)
     try:
-      gpt_response = prompt_gpt_3(gpt_prompt)
+      gpt_response = prompt_gpt(gpt_prompt)
       post_process_response = add_info_to_json(gpt_response, user_idx, personal_interest, input, context)
       responses.append(post_process_response)
     except Exception as e:
